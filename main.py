@@ -156,7 +156,7 @@ else:
         st.subheader("⏱️ Tiempos, Unidades y Cámaras")
         c1, c2, c3, c4 = st.columns(4)
         fecha = c1.date_input("FECHA")
-        centro_mando = c1.selectbox("CENTRO DE MANDO", ["SELECCIONAR", "CON", "CORCOL", "COMCH", "COMAR", "COMDA", "COMCHEP", "CEVIBO", "COMSAM"])
+        centro_mando = c1.selectbox("CENTRO DE MANDO", ["SELECCIONAR", "CON-C5", "CORCOL", "COMCH", "COMAR", "COMDA", "COMCHEP", "CEVIBO", "COMSAM"])
             
         # Aplicando la lista unica aqui
         unidad_vv = c1.selectbox("UNIDAD DE VV/104", lista_personal)
