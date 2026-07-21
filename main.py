@@ -118,7 +118,7 @@ if not st.session_state.autenticado:
 else:
     # --- 6. DASHBOARD PRINCIPAL ---
     st.markdown('<p class="author">DESARROLLADO POR: [CABO 1° ELMER RODRIGUEZ]</p>', unsafe_allow_html=True)    
-    st.title("🛡️ REGISTROS POSITIVOS DEL C.O.N - C5")
+    st.title("🛡️ REGISTROS DE INCIDENTES DEL C.O.N - C5")
     
     m = folium.Map(location=[8.9824, -79.5199], zoom_start=12)
     folium.TileLayer(tiles='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', attr='Google', name='Hybrid').add_to(m)
