@@ -95,7 +95,7 @@ def pantalla_login():
 
     # Base de datos local de usuarios
     usuarios_permitidos = {
-        "CONC5": "12345",
+        "JAVIER GONZALEZ": "12345678",
         "ALISJHON": "199432",
         "ISMAEL SAMUDIO": "20626", "DAMIAN NAVARRO": "DAMIAN26"
     }
