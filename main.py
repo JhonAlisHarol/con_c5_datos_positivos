@@ -166,15 +166,15 @@ else:
         # Aplicando la misma lista unica aqui
         unidad_despacho = c2.selectbox("UNIDAD DE DESPACHO", lista_personal)
         
-        t_inicial = c3.time_input("T. INICIAL", step=60)
-        h_despacho = c3.time_input("H. DESPACHO", step=60)
+        t_inicial = c3.time_input("HORA.INICIAL", step=60)
+        h_despacho = c3.time_input("HORA.DESPACHO", step=60)
         v_despacho = calcular_minutos(t_inicial, h_despacho)
         camara_id = c3.text_input("CAMARA/ID")
         c3.number_input("V. DESPACHO (min)", value=v_despacho, disabled=True)
-        h_atencion = c4.time_input("H. ATENCION", step=60)
+        h_atencion = c4.time_input("HORA.ATENCIÓN", step=60)
         v_atencion = calcular_minutos(t_inicial, h_atencion)
-        c4.number_input("V. ATENCION (min)", value=v_atencion, disabled=True)
-        h_cierre = c4.time_input("H. CIERE", step=60)
+        c4.number_input("V. ATENCIÓN (min)", value=v_atencion, disabled=True)
+        h_cierre = c4.time_input("HORA.CIERRE", step=60)
         v_cierre = calcular_minutos(t_inicial, h_cierre)
         c4.number_input("V. CIERRE (min)", value=v_cierre, disabled=True)
 
