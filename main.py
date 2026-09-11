@@ -210,7 +210,9 @@ else:
     m = folium.Map(location=[8.9824, -79.5199], zoom_start=12)
     folium.TileLayer(tiles='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', attr='Google', name='Hybrid').add_to(m)
     m.add_child(folium.LatLngPopup())
-    map_data = st_folium(m, height=500, width=1400)
+
+    # Añadir una key dinámica según el modo evita que el mapa colapse visualmente
+    map_data = st_folium(m, height=500, width=1400, key=f"map_{st.session_state.modo_pantalla}")
 
     # Solo actualizar las coordenadas si el clic es real y no centro por defecto
     if map_data and map_data.get('last_clicked'):
