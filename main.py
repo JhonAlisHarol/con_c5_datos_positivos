@@ -13,7 +13,7 @@ from supabase import create_client
 SUPABASE_URL = "https://easgbmkrafrmvcbzabog.supabase.co"
 
 # Usando la llave secreta revelada
-SUPABASE_KEY = "sb_secret_ufTbxd2O_YXCAt0L5-u3Ww_q8bhK2m8"
+SUPABASE_KEY = "sb_publishable_g_zDg3CJX5Yn9rIdCAfzGw__Ir2uHuC"
 
 # Inicialización del cliente
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
