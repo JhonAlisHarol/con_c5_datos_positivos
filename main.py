@@ -170,6 +170,9 @@ else:
             if st.button("📝 Nuevo", use_container_width=True):
                 st.session_state.modo_pantalla = "NUEVO"
                 st.session_state.caso_editar = None
+                # Agregamos estas dos líneas para limpiar las coordenadas guardadas
+                st.session_state.lat_f = ""
+                st.session_state.lon_f = ""
                 st.rerun()
                 
             if st.button("✏️ Editar", use_container_width=True):
@@ -181,7 +184,7 @@ else:
                 st.session_state.autenticado = False
                 st.session_state.usuario_actual = None 
                 st.rerun()
-
+    
     # --- 7. BUSCADOR Y VISTA PREVIA DE NARRATIVA (SÓLO MODO EDICIÓN) ---
     datos_cargados = {}
     
