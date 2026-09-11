@@ -217,10 +217,10 @@ else:
         lat_click = map_data['last_clicked']['lat']
         lng_click = map_data['last_clicked']['lng']
 
-    #Filtramos las coordenadas por defecto [8.9824, -79.5199]
-    if lat_click != 8.9824 and lng_click != -79.5199:
-        st.session_state.lat_f = lat_click
-        st.session_state.lon_f = lng_click
+        #Filtramos las coordenadas por defecto [8.9824, -79.5199]
+        if lat_click != 8.9824 and lng_click != -79.5199:
+            st.session_state.lat_f = lat_click
+            st.session_state.lon_f = lng_click
 
     latitud_actual = st.session_state.lat_f if st.session_state.lat_f else datos_cargados.get("LATITUD", "")
     longitud_actual = st.session_state.lon_f if st.session_state.lon_f else datos_cargados.get("LONGITUD", "")
