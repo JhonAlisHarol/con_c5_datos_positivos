@@ -212,7 +212,7 @@ else:
     m.add_child(folium.LatLngPopup())
     map_data = st_folium(m, height=500, width=1300)
 
-    Solo actualizar las coordenadas si el clic es real y no centro por defecto
+    # Solo actualizar las coordenadas si el clic es real y no centro por defecto
     if map_data and map_data.get('last_clicked'):
         lat_click = map_data['last_clicked']['lat']
         lng_click = map_data['last_clicked']['lng']
