@@ -108,8 +108,8 @@ def pantalla_login():
 
     usuarios_permitidos = {
         "JAVIER GONZALEZ": "12345678",
-        "ALISJHON": "199432",
-        "ISMAEL SAMUDIO": "20626", "DAMIAN NAVARRO": "DAMIAN26"
+        "PROGRAMADOR": "199432",
+        "CONC5": "CONC505", "CORCOLON": "CORCOLC3"
     }
 
     user = st.text_input("Usuario")
@@ -145,7 +145,7 @@ else:
     # --- 6. BARRA LATERAL (SIDEBAR) ---
     with st.sidebar:
         if st.session_state.get("autenticado", False):
-            st.write(f"👤 Operador: **{st.session_state.get('usuario_actual', 'Usuario')}**")
+            st.write(f"👤 Usuario: **{st.session_state.get('usuario_actual', 'Usuario')}**")
             
             st.subheader("🕒 Hora Actual")
             import streamlit.components.v1 as components
@@ -210,7 +210,7 @@ else:
     m = folium.Map(location=[8.9824, -79.5199], zoom_start=12)
     folium.TileLayer(tiles='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', attr='Google', name='Hybrid').add_to(m)
     m.add_child(folium.LatLngPopup())
-    map_data = st_folium(m, height=500, width=1300)
+    map_data = st_folium(m, height=600, width=1400)
 
     # Solo actualizar las coordenadas si el clic es real y no centro por defecto
     if map_data and map_data.get('last_clicked'):
