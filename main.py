@@ -206,24 +206,27 @@ else:
                         st.error(f"Error: {e}")
         
         with col_preview:
-            st.markdown("##### 📄 Reporte / Narrativa Original del Caso")
+            # Título único con el tamaño de letra correcto
+            st.markdown('<p style="font-size: 14px; font-weight: 600; color: white; margin-bottom: 6px;">📄 Reporte / Narrativa Original del Caso</p>', unsafe_allow_html=True)
+            
             # Extraemos la narrativa del caso cargado en memoria de forma automática
             narrativa_previa = ""
             if st.session_state.get('caso_editar'):
                 narrativa_previa = st.session_state.caso_editar.get("NARRATIVA", "")
             
-            # Usamos st.text_area con disabled=True para que se vea limpio, con barra de desplazamiento si es largo, pero IMPOSIBLE de editar aquí
-            st.text_area(
-                "Texto original (Solo lectura)", 
-                value=narrativa_previa, 
-                height=110, 
-                disabled=True, 
-                label_visibility="collapsed"
+            # Contenedor limpio y estático de solo lectura
+            st.markdown(
+                f"""
+                <div style="background-color: rgba(15, 23, 42, 0.6); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 8px; padding: 10px; color: #cbd5e1; font-size: 13px; height: 110px; overflow-y: auto;">
+                    {narrativa_previa if narrativa_previa else '<span style="color: #64748b;">(La narrativa aparecerá aquí al cargar el caso...)</span>'}
+                </div>
+                """, 
+                unsafe_allow_html=True
             )
                     
         if st.session_state.get('caso_editar'):
             datos_cargados = st.session_state.caso_editar
-
+            
     # --- 8. MAPA Y COORDENADAS ---
     m = folium.Map(location=[8.9824, -79.5199], zoom_start=12)
     folium.TileLayer(tiles='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', attr='Google', name='Hybrid').add_to(m)
