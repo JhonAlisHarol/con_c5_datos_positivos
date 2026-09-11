@@ -182,26 +182,44 @@ else:
                 st.session_state.usuario_actual = None 
                 st.rerun()
 
-    # --- 7. BUSCADOR (SÓLO MODO EDICIÓN) ---
+    # --- 7. BUSCADOR Y VISTA PREVIA DE NARRATIVA (SÓLO MODO EDICIÓN) ---
     datos_cargados = {}
     
     if st.session_state.modo_pantalla == "EDICION":
-        st.info("✏️ **MODO EDICIÓN ACTIVADO:** Busque un caso para rellenar el formulario inferior.")
-        col_busqueda, col_vacia = st.columns([1, 2])
-        id_busqueda = col_busqueda.text_input("Ingrese el ID del caso a editar:")
+        st.info("✏️ **MODO EDICIÓN ACTIVADO:** Ingrese el ID y cargue el caso para ver su reporte y editarlo abajo.")
         
-        if col_busqueda.button("🔍 Cargar Datos al Formulario"):
-            if id_busqueda.strip():
-                try:
-                    respuesta = supabase.table("con_c5_datos_positivos").select("*").eq("id", id_busqueda).execute()
-                    if respuesta.data:
-                        st.session_state.caso_editar = respuesta.data[0]
-                        st.success(f"Datos del caso {id_busqueda} cargados correctamente.")
-                    else:
-                        st.error("No se encontró el caso en la base de datos.")
-                        st.session_state.caso_editar = None
-                except Exception as e:
-                    st.error(f"Error de conexión: {e}")
+        col_busq, col_preview = st.columns([1, 2])
+        
+        with col_busq:
+            id_busqueda = st.text_input("Ingrese el ID del caso a editar:")
+            if st.button("🔍 Cargar Datos al Formulario"):
+                if id_busqueda.strip():
+                    try:
+                        respuesta = supabase.table("con_c5_datos_positivos").select("*").eq("id", id_busqueda).execute()
+                        if respuesta.data:
+                            st.session_state.caso_editar = respuesta.data[0]
+                            st.success(f"Caso {id_busqueda} cargado.")
+                        else:
+                            st.error("No encontrado.")
+                            st.session_state.caso_editar = None
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+        
+        with col_preview:
+            st.markdown("##### 📄 Reporte / Narrativa Original del Caso")
+            # Extraemos la narrativa del caso cargado en memoria de forma automática
+            narrativa_previa = ""
+            if st.session_state.get('caso_editar'):
+                narrativa_previa = st.session_state.caso_editar.get("NARRATIVA", "")
+            
+            # Usamos st.text_area con disabled=True para que se vea limpio, con barra de desplazamiento si es largo, pero IMPOSIBLE de editar aquí
+            st.text_area(
+                "Texto original (Solo lectura)", 
+                value=narrativa_previa, 
+                height=110, 
+                disabled=True, 
+                label_visibility="collapsed"
+            )
                     
         if st.session_state.get('caso_editar'):
             datos_cargados = st.session_state.caso_editar
