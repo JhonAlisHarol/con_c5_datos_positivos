@@ -108,7 +108,7 @@ def pantalla_login():
 
     usuarios_permitidos = {
         "JAVIER GONZALEZ": "12345678",
-        "PROGRAMADOR": "199432",
+        "ALISJHON": "199432",
         "CONC5": "CONC505", "CORCOLON": "CORCOLC3"
     }
 
