@@ -455,9 +455,66 @@ else:
                         st.success("✔️ Registro NUEVO guardado con éxito en Supabase y Google Sheets.")
                     else:
                         id_caso = st.session_state.caso_editar['id']
-                        # Al editar, se actualiza en Supabase
+                        fecha_hora_orig = st.session_state.caso_editar.get('FECHA_HORA', '')
+                        
+                        # 1. Al editar, se actualiza en Supabase
                         supabase.table("con_c5_datos_positivos").update(paquete_datos).eq("id", id_caso).execute()
-                        st.success(f"✔️ Registro {id_caso} ACTUALIZADO con éxito en Supabase.")
+                        
+                        # 2. Buscar y actualizar en Google Sheets
+                        try:
+                            # Busca el ID exacto en la Columna 1 (A)
+                            celda = hoja_excel.find(str(id_caso), in_column=1)
+                            
+                            if celda:
+                                fila = celda.row
+                                datos_excel_edit = [
+                                    id_caso, # A
+                                    fecha_hora_orig, # B
+                                    paquete_datos["MODO"], # C
+                                    paquete_datos["FECHA_EVENTO"], # D
+                                    paquete_datos["PROVINCIA"], # E
+                                    paquete_datos["DISTRITO"], # F
+                                    paquete_datos["CORREGIMIENTO"], # G
+                                    paquete_datos["REFERENCIA"], # H
+                                    paquete_datos["ZP_POLICIAL"], # I
+                                    paquete_datos["RECURSOS"], # J
+                                    paquete_datos["CENTRO_DE_MANDO"], # K
+                                    paquete_datos["UNIDAD_VV"], # L
+                                    paquete_datos["CANAL_ENTRADA"], # M
+                                    paquete_datos["UNIDAD_DESPACHO"], # N
+                                    paquete_datos["T_INICIAL"], # O
+                                    paquete_datos["H_DESPACHO"], # P
+                                    paquete_datos["VARIANZA_DESPACHO"], # Q
+                                    paquete_datos["CAMARA_ID"], # R
+                                    paquete_datos["H_ATENCION"], # S
+                                    paquete_datos["VARIANZA_ATENCION"], # T
+                                    paquete_datos["H_CIERRE"], # U
+                                    paquete_datos["VARIANZA_CIERRE"], # V
+                                    paquete_datos["TIPO_INCIDENTE"], # W
+                                    paquete_datos["SUBTIPO_INCIDENTE"], # X
+                                    paquete_datos["CIERRE_TIPO"], # Y
+                                    paquete_datos["CIERRE_SUBTIPO"], # Z
+                                    paquete_datos["P1"], # AA
+                                    paquete_datos["P2"], # AB
+                                    paquete_datos["P3"], # AC
+                                    paquete_datos["P4"], # AD
+                                    paquete_datos["P5"], # AE
+                                    paquete_datos["P6"], # AF
+                                    paquete_datos["NARRATIVA"], # AG
+                                    paquete_datos["LINK_VIDEO"], # AH
+                                    paquete_datos["LATITUD"], # AI
+                                    paquete_datos["LONGITUD"], # AJ
+                                    paquete_datos["VEHICULOS_VERIFICADOS"], # AK
+                                    paquete_datos["PERSONAS_VERIFICADAS"] # AL
+                                ]
+                                # Sobrescribe la fila encontrada con los nuevos datos
+                                hoja_excel.update(range_name=f'A{fila}:AL{fila}', values=[datos_excel_edit])
+                                st.success(f"✔️ Registro {id_caso} ACTUALIZADO con éxito en Supabase y Google Sheets.")
+                            else:
+                                st.warning(f"✔️ Actualizado en Supabase, pero el ID {id_caso} no se encontró en Excel.")
+                        except Exception as e:
+                            st.error(f"Se actualizó en Supabase, pero hubo un error en Excel: {e}")
+                            
                         st.session_state.caso_editar = None
                         
                 except Exception as e:
