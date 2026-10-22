@@ -36,7 +36,11 @@ def init_gspread():
     return gspread.authorize(credentials)
 
 gc = init_gspread()
-hoja_excel = gc.open("Incidentes Positivos").worksheet("REGISTRO_MAESTRO_C5")
+try:
+    hoja_excel = gc.open("Incidentes Positivos").worksheet("REGISTRO_MAESTRO_C5")
+except Exception as e:
+    st.error(f"🚨 ERROR DE CONEXIÓN CON EXCEL: {e}")
+    hoja_excel = None
 
 # --- 2. CONFIGURACIÓN DE PÁGINA Y CSS ---
 st.set_page_config(page_title="C5 - Registro Maestro", layout="wide", initial_sidebar_state="expanded")
