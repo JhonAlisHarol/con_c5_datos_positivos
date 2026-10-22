@@ -409,19 +409,44 @@ else:
                         
                         # --- NUEVO: GUARDAR EN GOOGLE SHEETS DE FORMA SIMULTÁNEA ---
                         datos_excel = [
-                            "", # El ID se genera en Excel
-                            paquete_datos["FECHA_HORA"], paquete_datos["MODO"], paquete_datos["FECHA_EVENTO"], 
-                            paquete_datos["PROVINCIA"], paquete_datos["DISTRITO"], paquete_datos["CORREGIMIENTO"], 
-                            paquete_datos["REFERENCIA"], paquete_datos["ZP_POLICIAL"], paquete_datos["RECURSOS"], 
-                            paquete_datos["CENTRO_DE_MANDO"], paquete_datos["UNIDAD_VV"], paquete_datos["CANAL_ENTRADA"], 
-                            paquete_datos["UNIDAD_DESPACHO"], paquete_datos["T_INICIAL"], paquete_datos["H_DESPACHO"], 
-                            paquete_datos["VARIANZA_DESPACHO"], paquete_datos["CAMARA_ID"], paquete_datos["H_ATENCION"], 
-                            paquete_datos["VARIANZA_ATENCION"], paquete_datos["H_CIERRE"], paquete_datos["VARIANZA_CIERRE"], 
-                            paquete_datos["TIPO_INCIDENTE"], paquete_datos["SUBTIPO_INCIDENTE"], paquete_datos["VEHICULOS_VERIFICADOS"], 
-                            paquete_datos["PERSONAS_VERIFICADAS"], paquete_datos["CIERRE_TIPO"], paquete_datos["CIERRE_SUBTIPO"], 
-                            paquete_datos["P1"], paquete_datos["P2"], paquete_datos["P3"], paquete_datos["P4"], 
-                            paquete_datos["P5"], paquete_datos["P6"], paquete_datos["NARRATIVA"], paquete_datos["LINK_VIDEO"], 
-                            paquete_datos["LATITUD"], paquete_datos["LONGITUD"]
+                            "", # El ID se genera en Excel (Columna A)
+                            paquete_datos["FECHA_HORA"], # B
+                            paquete_datos["MODO"], # C
+                            paquete_datos["FECHA_EVENTO"], # D
+                            paquete_datos["PROVINCIA"], # E
+                            paquete_datos["DISTRITO"], # F
+                            paquete_datos["CORREGIMIENTO"], # G
+                            paquete_datos["REFERENCIA"], # H
+                            paquete_datos["ZP_POLICIAL"], # I
+                            paquete_datos["RECURSOS"], # J
+                            paquete_datos["CENTRO_DE_MANDO"], # K
+                            paquete_datos["UNIDAD_VV"], # L
+                            paquete_datos["CANAL_ENTRADA"], # M
+                            paquete_datos["UNIDAD_DESPACHO"], # N
+                            paquete_datos["T_INICIAL"], # O
+                            paquete_datos["H_DESPACHO"], # P
+                            paquete_datos["VARIANZA_DESPACHO"], # Q
+                            paquete_datos["CAMARA_ID"], # R
+                            paquete_datos["H_ATENCION"], # S
+                            paquete_datos["VARIANZA_ATENCION"], # T
+                            paquete_datos["H_CIERRE"], # U
+                            paquete_datos["VARIANZA_CIERRE"], # V
+                            paquete_datos["TIPO_INCIDENTE"], # W
+                            paquete_datos["SUBTIPO_INCIDENTE"], # X
+                            paquete_datos["CIERRE_TIPO"], # Y
+                            paquete_datos["CIERRE_SUBTIPO"], # Z
+                            paquete_datos["P1"], # AA
+                            paquete_datos["P2"], # AB
+                            paquete_datos["P3"], # AC
+                            paquete_datos["P4"], # AD
+                            paquete_datos["P5"], # AE
+                            paquete_datos["P6"], # AF
+                            paquete_datos["NARRATIVA"], # AG
+                            paquete_datos["LINK_VIDEO"], # AH
+                            paquete_datos["LATITUD"], # AI
+                            paquete_datos["LONGITUD"], # AJ
+                            paquete_datos["VEHICULOS_VERIFICADOS"], # AK
+                            paquete_datos["PERSONAS_VERIFICADAS"] # AL
                         ]
                         hoja_excel.append_row(datos_excel)
                         # -------------------------------------------------------------
