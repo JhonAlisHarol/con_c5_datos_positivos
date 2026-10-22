@@ -404,12 +404,13 @@ else:
                         # Se registra fecha y hora exacta
                         paquete_datos["FECHA_HORA"] = datetime.now(pytz.timezone('America/Panama')).strftime("%Y-%m-%d %H:%M:%S")
                         
-                        # Guardar en Supabase
-                        supabase.table("con_c5_datos_positivos").insert(paquete_datos, returning='minimal').execute()
+                        # Guardar en Supabase y obtener el ID recién creado
+                        respuesta = supabase.table("con_c5_datos_positivos").insert(paquete_datos).execute()
+                        nuevo_id = respuesta.data[0]['id']
                         
                         # --- NUEVO: GUARDAR EN GOOGLE SHEETS DE FORMA SIMULTÁNEA ---
                         datos_excel = [
-                            "", # El ID se genera en Excel (Columna A)
+                            nuevo_id, # Columna A: Usa el mismo ID exacto de Supabase
                             paquete_datos["FECHA_HORA"], # B
                             paquete_datos["MODO"], # C
                             paquete_datos["FECHA_EVENTO"], # D
