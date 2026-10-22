@@ -3,4 +3,5 @@ pandas
 folium
 streamlit-folium
 supabase
-pytz
+gspread
+google-auth
